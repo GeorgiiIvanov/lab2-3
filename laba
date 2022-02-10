@@ -1,0 +1,12 @@
+#сортировка массива методом "пузырька"
+import random
+array = [random.randint(1,20) for i in range(10)]
+for i in range(10):
+    print(array[i], "", end='')
+print()
+for i in range(10):
+    for i in range(9):
+        if array[i] > array[i + 1]:
+            array[i], array[i + 1] = array[i + 1], array[i]
+for i in range(10):
+    print(array[i], "", end='')
