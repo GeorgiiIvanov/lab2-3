@@ -1,0 +1,18 @@
+a = int(input("Введите цифру "))
+b = int(input("Введите цифру "))
+str_a = str(a)
+str_b = str(b)
+print("Числа которые на содержат цифры", a, "и", b)
+def poisk(n):
+    str_n = str(n)
+    flag = True
+    for i in range(0, len(str_n)):
+        if str_n[i] == str_a or str_n[i] == str_b:
+            flag = False
+    if flag:
+        print(n, "", end='')
+with open("file.txt", 'r') as file:
+    for line in file:
+        for i in line.split():
+            poisk(i)
+
