@@ -1,18 +1,32 @@
-a = int(input("Введите цифру "))
-b = int(input("Введите цифру "))
-str_a = str(a)
-str_b = str(b)
-print("Числа которые на содержат цифры", a, "и", b)
-def poisk(n):
-    str_n = str(n)
-    flag = True
-    for i in range(0, len(str_n)):
-        if str_n[i] == str_a or str_n[i] == str_b:
+import time
+flag = False
+number = ""
+try:
+    while True:  # проверяем ввел ли пользователь цифру, а не что-то другое
+        a = input("Введите цифру ")
+        if a >= '0' and a <= '9':
+            break
+    start = time.time()
+    with open(".txt", "r") as f:  # открываем файл
+        file = f.read(1)  # читаем первый символ
+        if not file:  # проверяем пустой ли файл
+            print("Файл пустой")
+        while file:
+            while (file < '0' or file > '9') and file:  # ищем цифры
+                file = f.read(1)  # читаем очередной блок
+            while file >= '0' and file <= '9' and file:
+                if file == a:  # проверяем есть ли цифра в числе
+                    flag = True
+                if not flag:  #если цифры нет то записываем цифру в число
+                    number += file
+                file = f.read(1)  # читаем очередной блок
+            if not flag:  # печатем число
+                print(number, '', end='')
+            number = ""  # готовим переменные для нового цикла
             flag = False
-    if flag:
-        print(n, "", end='')
-with open("file.txt", 'r') as file:
-    for line in file:
-        for i in line.split():
-            poisk(i)
+    end = time.time()
+    print("\nВремя работы программы:", end - start, "секунд")
 
+
+except FileNotFoundError:
+    print("Файл в директории проекта не обнаружен.\nДобавьте файл в директорию или переименуйте текущий файл.")
