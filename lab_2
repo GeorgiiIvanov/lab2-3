@@ -1,13 +1,19 @@
 import time
-flag = False
 number = ""
+def poisk(n): # функция которая проверяет есть ли цифра в числе
+    flag = True
+    for i in range(0, len(n)):
+        if n[i] == a:
+            flag = False
+    if flag:
+        print(n, '', end='')
 try:
     while True:  # проверяем ввел ли пользователь цифру, а не что-то другое
         a = input("Введите цифру ")
         if a >= '0' and a <= '9':
             break
     start = time.time()
-    with open(".txt", "r") as f:  # открываем файл
+    with open("0.txt", "r") as f:  # открываем файл
         file = f.read(1)  # читаем первый символ
         if not file:  # проверяем пустой ли файл
             print("Файл пустой")
@@ -15,18 +21,11 @@ try:
             while (file < '0' or file > '9') and file:  # ищем цифры
                 file = f.read(1)  # читаем очередной блок
             while file >= '0' and file <= '9' and file:
-                if file == a:  # проверяем есть ли цифра в числе
-                    flag = True
-                if not flag:  #если цифры нет то записываем цифру в число
-                    number += file
+                number += file # записываем число
                 file = f.read(1)  # читаем очередной блок
-            if not flag:  # печатем число
-                print(number, '', end='')
-            number = ""  # готовим переменные для нового цикла
-            flag = False
+            poisk(number) # проверяем число
+            number = "" # готовим для нового цикла
     end = time.time()
-    print("\nВремя работы программы:", end - start, "секунд")
-
-
+    print("\nВремя работы программы:", end - start, "секунд\n")
 except FileNotFoundError:
     print("Файл в директории проекта не обнаружен.\nДобавьте файл в директорию или переименуйте текущий файл.")
