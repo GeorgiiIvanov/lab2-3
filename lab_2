@@ -17,7 +17,7 @@ try:
         file = f.read(1)  # читаем первый символ
         if not file:  # проверяем пустой ли файл
             print("Файл пустой")
-        while file:
+        while file: # пока файл не пустой
             while (file < '0' or file > '9') and file:  # ищем цифры
                 file = f.read(1)  # читаем очередной блок
             while file >= '0' and file <= '9' and file:
