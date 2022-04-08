@@ -1,5 +1,7 @@
 import time
 number = ""
+dot_flag = False
+f = True
 def poisk(n): # функция которая проверяет есть ли цифра в числе
     flag = True
     for i in range(0, len(n)):
@@ -17,15 +19,21 @@ try:
         file = f.read(1)  # читаем первый символ
         if not file:  # проверяем пустой ли файл
             print("Файл пустой")
-        while file: # пока файл не пустой
+        while file:
             while (file < '0' or file > '9') and file:  # ищем цифры
                 file = f.read(1)  # читаем очередной блок
-            while file >= '0' and file <= '9' and file:
+            while ((file >= '0' and file <= '9') or file == '.') and file:
+                if file == '.':
+                    dot_flag = True
                 number += file # записываем число
                 file = f.read(1)  # читаем очередной блок
+                if file == '.' and dot_flag:
+                    break
             poisk(number) # проверяем число
+            dot_flag = False
             number = "" # готовим для нового цикла
     end = time.time()
     print("\nВремя работы программы:", end - start, "секунд\n")
 except FileNotFoundError:
     print("Файл в директории проекта не обнаружен.\nДобавьте файл в директорию или переименуйте текущий файл.")
+
