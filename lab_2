@@ -1,7 +1,6 @@
 import time
 number = ""
 dot_flag = False
-f = True
 def poisk(n): # функция которая проверяет есть ли цифра в числе
     flag = True
     for i in range(0, len(n)):
